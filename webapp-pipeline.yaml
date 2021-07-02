@@ -15,4 +15,4 @@ steps:
     azureSubscription: 'Azure Class(450668e5-5786-419e-82dd-1901b7404c8f)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az web app up -n larrywebapp'
+    inlineScript: 'az webapp up -n larrywebapp'
