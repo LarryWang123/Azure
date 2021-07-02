@@ -1,0 +1,47 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+- feature/larry-static-site
+variables:
+  - group: larry-variable-group
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- bash: |
+    echo "Hello world from $AGENT_NAME running on $AGENT_OS"
+    echo '$(Pipeline.Workspace)'
+    ls -l $(Pipeline.Workspace)/*
+    echo '$(Build.SourceDirectory)'
+    ls -l $(Build.SourceDirectory)
+    case $BUILD_REASON in
+            "Manual") echo "$BUILD_REQUESTEDFOR manually queued the build." ;;
+            "IndividualCI") echo "This is a CI build for $BUILD_REQUESTEDFOR." ;;
+            "BatchedCI") echo "This is a batched CI build for $BUILD_REQUESTEDFOR." ;;
+        *) $BUILD_REASON ;;
+    esac
+  displayName: Hello world
+- bash: |
+    echo "Hello world from $AGENT_NAME running on $AGENT_OS"
+    echo '$(Pipeline.Workspace)'
+    ls -l $(Pipeline.Workspace)/*
+    echo '$(Build.ArtifactStagingDirectory)'
+    ls -l $(Build.ArtifactStagingDirectory)
+  displayName: Hello world
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Azure Class(450668e5-5786-419e-82dd-1901b7404c8f)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: "az storage blob upload-batch --account-name $(STORAGE_ACCOUNT_NAME) --account-key $(STORAGE_ACCOUNT_KEY) --destination '$web' --pattern '*.html' --source ./"
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: '$(Build.SourceDirectory)/*.html'
+    azureSubscription: 'Azure Class(450668e5-5786-419e-82dd-1901b7404c8f)'
+    Destination: 'AzureBlob'
+    storage: 'larrywebsite'
+    ContainerName: '$logs'
