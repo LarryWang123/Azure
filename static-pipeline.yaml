@@ -17,4 +17,4 @@ steps:
     azureSubscription: 'Azure Class(450668e5-5786-419e-82dd-1901b7404c8f)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: "az storage blob upload-batch --account-name $(STORAGE_ACCOUNT_NAME) --account-key $(STORAGE_ACCOUNT_KEY) --destination '$web' --pattern '*.html,images' --source ./"
+    inlineScript: "az storage blob upload-batch --account-name $(STORAGE_ACCOUNT_NAME) --account-key $(STORAGE_ACCOUNT_KEY) --destination '$web' --pattern '*.html,images/*' --source ./"
