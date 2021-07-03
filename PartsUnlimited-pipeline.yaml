@@ -9,7 +9,7 @@ trigger:
 
 stages:
 - stage: Build
-  Jobs:
+Jobs:
   - Job Build
     pool:
       vmImage: 'vs2017-win2016'
