@@ -12,7 +12,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'windows-latest'
+      vmImage: 'vs2017-ws2016'
 
     variables:
       solution: '**/*.sln'
