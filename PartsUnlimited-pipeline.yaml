@@ -10,7 +10,7 @@ trigger:
 stages:
 - stage: Build
   Jobs:
-  - Job Build
+  - Job: Build
     pool:
       vmImage: 'vs2017-win2016'
 
@@ -43,7 +43,7 @@ stages:
         publishLocation: 'Container'
 - stage: Deploy
   Jobs:
-  - Job Deploy
+  - Job: Deploy
     pool:
       vmImage: 'vs2017-win2016'
     
