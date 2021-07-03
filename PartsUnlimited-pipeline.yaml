@@ -21,10 +21,6 @@ stages:
 
     steps:
     - task: NuGetToolInstaller@1
-    - task: UseDotNet@2
-      inputs:
-        packageType: 'sdk'
-        useGlobalJson: true
 
     - task: NuGetCommand@2
       inputs:
