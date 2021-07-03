@@ -37,10 +37,12 @@ stages:
       inputs:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-          inputs:
+    - task: PublishBuildArtifacts@1
+      inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
+        
 - stage: Deploy
   Jobs:
   - Job: Deploy
