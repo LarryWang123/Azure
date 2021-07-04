@@ -4,6 +4,7 @@
 
 trigger:
 - main
+- node-app
 
 resources:
 - repo: self
