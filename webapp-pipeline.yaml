@@ -54,6 +54,6 @@ stages:
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'Azure Class(450668e5-5786-419e-82dd-1901b7404c8f)'
-        criptType: 'bash'
+        scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: 'az webapp up -n larrywebapp'
