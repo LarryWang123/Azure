@@ -49,7 +49,7 @@ stages:
   jobs:
   - job: webappdeploy
     pool:
-      vmImage: $vmImageName)
+      vmImage: $(vmImageName)
     steps:
     - task: AzureCLI@2
       inputs:
