@@ -44,10 +44,10 @@ stages:
         tags: |
           $(tag)
 
-- stage: Web App Deploy
+- stage: WebAppDeploy
   displayName: Web App Deploy
   jobs:
-  - job: web app deploy
+  - job: webappdeploy
     pool:
       vmImage: $vmImageName)
     steps:
